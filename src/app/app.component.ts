@@ -2,11 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
+import {NotebooksPage} from '../pages/notebooks/notebooks';
+import {NotesPage} from '../pages/notes/notes';
+import {NoteeditorPage} from '../pages/noteeditor/noteeditor';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {InitDbProvider} from '../providers/init-db/init-db';
 
 
 @Component({
@@ -16,21 +19,23 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  rootPage = NotebooksPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public sqlite : InitDbProvider
   ) {
     this.initializeApp();
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      {title: 'Notebooks', component : NotebooksPage},
+      {title: 'Note Editor', component: NoteeditorPage},
+      {title: 'All Notes', component : NotesPage}
     ];
   }
 

@@ -1,0 +1,29 @@
+<!--
+  Generated template for the NoteeditorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Note Editor</ion-title>
+
+    <ion-buttons start *ngIf="!saved">
+        <button ion-button icon-only (click)="saveNote()">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-input type="text" (keyup)="onChange()" [(ngModel)]="notedata.title" placeholder="Note title"></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-textarea id="note-content" (keyup)="onChange()" [(ngModel)]="notedata.content" placeholder="Note"></ion-textarea>
+  </ion-item>
+</ion-content>
