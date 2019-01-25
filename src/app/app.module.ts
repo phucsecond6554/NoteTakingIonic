@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+//import {HttpClientModule} from '@angular/common/http';
 import {SQLite} from '@ionic-native/sqlite';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -17,20 +17,19 @@ import { NotebooksProvider } from '../providers/notebooks/notebooks';
 import { NotesProvider } from '../providers/notes/notes';
 import { NoteeditorPage } from '../pages/noteeditor/noteeditor';
 
-import {Autosize} from '../component/autosize';
+//import {Autosize} from '../component/autosize';
 
 @NgModule({
   declarations: [
     MyApp,
     NotebooksPage,
     NotesPage,
-    NoteeditorPage,
-    Autosize
+    NoteeditorPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    HttpClientModule
+    IonicModule.forRoot(MyApp)
+    //HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

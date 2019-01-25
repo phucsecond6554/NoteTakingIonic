@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import {Note} from '../../note';
 import {NotesProvider} from '../../providers/notes/notes';
 import {AlertController} from 'ionic-angular';
@@ -18,6 +18,7 @@ import {AlertController} from 'ionic-angular';
 })
 export class NoteeditorPage {
   @ViewChild('area') area : ElementRef;
+  @ViewChild(Content) content: Content;
 
   resized = false;
   
@@ -69,6 +70,13 @@ export class NoteeditorPage {
       
   }
 
+  adjust(event: any):void {
+    const textArea = event.target;
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+  }
+
   onChange()
   {
     this.saved = false;
@@ -83,6 +91,7 @@ export class NoteeditorPage {
       .then((result) => {
         //this.showAlert(JSON.stringify(result));
         this.saved = true;
+        this.mode = 'modify';
       })
       .catch(e => {this.showAlert(JSON.stringify(e))})
     }

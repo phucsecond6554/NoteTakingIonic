@@ -1,5 +1,11 @@
 page-noteeditor {
+    body{
+        position: static !important;
+    }
     #note-content{
         min-height: 50vh;
+        width:100vw;
+        border: none;
+        position: static;
     }
 }

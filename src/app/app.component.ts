@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {InitDbProvider} from '../providers/init-db/init-db';
+import { NoteeditorPage } from '../pages/noteeditor/noteeditor';
 
 
 @Component({
