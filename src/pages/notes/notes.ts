@@ -56,6 +56,22 @@ export class NotesPage {
     console.log('ionViewDidLoad NotesPage');
   }
 
+  deleteNote(noteid)
+  {
+    this.sqlite.deleteNote(noteid)
+      .then(() => {
+        // Xoa thanh cong thi cap nhat lai danh sach
+        this.sqlite.showNotesOf(this.nb_id)
+          .then((result:any) => {
+            this.list = result.list;
+          })
+          .catch(e=>{this.showAlert(JSON.stringify(e))});
+      })
+      .catch(e => {
+        this.showAlert(JSON.stringify(e));
+      })
+  }
+
   ionViewDidEnter()
   {   
     this.sqlite.getConnect()   

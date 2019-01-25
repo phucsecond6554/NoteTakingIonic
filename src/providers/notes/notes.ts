@@ -70,6 +70,19 @@ export class NotesProvider {
     })
   }
 
+  deleteNote(noteid)
+  {
+    return new Promise((resolve, reject) => {
+      var sql = 'delete from notes where id=?';
+
+      this.db.executeSql(sql, [noteid])
+        .then((result) => {
+          resolve({state: 'success', result: result});
+        })
+        .catch((e) => {reject({state:'error', detail: e})})
+    })
+  }
+
   getNote(noteid)
   {
     return new Promise((resolve, reject) => {

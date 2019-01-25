@@ -8,8 +8,7 @@ import {NotesPage} from '../pages/notes/notes';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {InitDbProvider} from '../providers/init-db/init-db';
-import { NoteeditorPage } from '../pages/noteeditor/noteeditor';
+//import {InitDbProvider} from '../providers/init-db/init-db';
 
 
 @Component({
@@ -26,8 +25,7 @@ export class MyApp {
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen,
-    public sqlite : InitDbProvider
+    public splashScreen: SplashScreen
   ) {
     this.initializeApp();
 

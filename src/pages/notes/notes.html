@@ -28,7 +28,7 @@
             <small>{{item.content}}</small>
           </div>
           <ion-buttons item-end>
-            <button ion-button icon-only clear>
+            <button ion-button icon-only clear (click)="deleteNote(item.id)">
               <ion-icon color="dark" name="trash"></ion-icon>
             </button>
           </ion-buttons>
