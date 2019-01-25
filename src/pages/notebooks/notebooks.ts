@@ -107,10 +107,40 @@ export class NotebooksPage {
       .catch(e => {this.showAlert(JSON.stringify(e))})
   }
 
+  renameNotebook(nb_id)
+  {
+    const prompt = this.alertCtr.create({
+      title : 'Notebook new name',
+      message : 'Please enter a new name for this notebook',
+      inputs: [
+        {
+          name : 'nb_name',
+          placeholder : 'Notebook Name'
+        }
+      ],
+      buttons: [
+        {
+          text : 'Cancel',
+          handler: data => {console.log('Cancel Clicked')}
+        },
+        {
+          text: 'Ok',
+          handler : data => {
+            this.sqlite.renameNotebook(nb_id,data.nb_name)
+              .then(() => {this.showAllNotebooks()})
+              .catch(e => this.showAlert(JSON.stringify(e)));
+          }
+        }
+      ]
+    });
+
+    prompt.present();
+  }
+
   openMoreOption(notebook)
   {
     const actionSheet = this.actionSheetCtr.create({
-      title: `Edit ${notebook.nb_name} - ${notebook.id}`,
+      title: `Edit ${notebook.nb_name}`,
       buttons : [
         {
           text : 'Delete',
@@ -118,6 +148,13 @@ export class NotebooksPage {
           handler : () =>{
             this.deleteNotebook(notebook.id)
           }         
+        },
+        {
+          text: 'Rename',
+          icon : 'create',
+          handler : () => {
+            this.renameNotebook(notebook.id);
+          }
         }
       ]
     })

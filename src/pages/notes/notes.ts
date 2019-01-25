@@ -19,7 +19,7 @@ import {NoteeditorPage} from '../noteeditor/noteeditor';
   templateUrl: 'notes.html',
 })
 export class NotesPage {
-  nb_id : number = null;
+  nb_id: any = null;
   list : any;
 
   constructor(public navCtrl: NavController
@@ -28,15 +28,6 @@ export class NotesPage {
      private alertCtr: AlertController
     ) {
     this.nb_id = navParams.get('nb_id');
-
-    if(this.nb_id == null)
-    {
-      this.sqlite.showAllNotes()
-        .then((result: any) =>{
-          this.list = result.list;
-        })
-        .catch(e => {this.showAlert(JSON.stringify(e))})
-    }
   }
 
   showAlert(alert:string)
@@ -66,15 +57,24 @@ export class NotesPage {
   }
 
   ionViewDidEnter()
-  {
-    this.sqlite.getConnect()
+  {   
+    this.sqlite.getConnect()   
       .then(() => {
-        this.sqlite.showNotesOf(this.nb_id)
+        if(this.nb_id != undefined && this.nb_id != 'undefined')
+        {
+          this.sqlite.showNotesOf(this.nb_id)
           .then((result:any) => {
             this.list = result.list;
             //this.showAlert(JSON.stringify(result));
           })
           .catch(e=>{this.showAlert(JSON.stringify(e))});
+        }else{
+          this.sqlite.showAllNotes()
+          .then((result: any) =>{
+            this.list = result.list;
+          })
+          .catch(e => {this.showAlert(JSON.stringify(e))})
+        }
       })
       .catch(e => {JSON.stringify(e)})
   }

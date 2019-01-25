@@ -114,7 +114,7 @@ export class NotesProvider {
   showAllNotes()
   {
     return new Promise((resolve, reject) => {
-      var sql = 'select * from `notes` order by `create_time` desc';
+      var sql = 'select * from notes order by create_time desc';
 
       this.db.executeSql(sql, [])
         .then((result) => {

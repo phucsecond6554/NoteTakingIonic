@@ -4,7 +4,6 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import {NotebooksPage} from '../pages/notebooks/notebooks';
 import {NotesPage} from '../pages/notes/notes';
-import {NoteeditorPage} from '../pages/noteeditor/noteeditor';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,7 +33,6 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       {title: 'Notebooks', component : NotebooksPage},
-      {title: 'Note Editor', component: NoteeditorPage},
       {title: 'All Notes', component : NotesPage}
     ];
   }

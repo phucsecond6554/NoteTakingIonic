@@ -16,8 +16,8 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="nb_id">
-    <ion-fab bottom right>
+<ion-content padding >
+    <ion-fab bottom right *ngIf="nb_id">
         <button ion-fab (click)="addNewNote()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 

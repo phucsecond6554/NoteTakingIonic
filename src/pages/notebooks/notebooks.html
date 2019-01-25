@@ -26,7 +26,7 @@
   <ion-list>
     <ion-item *ngFor="let item of list">
       <div (click)="openNotebook(item.id)">
-        <p class="title">{{item.nb_name}} - ID: {{item.id}}</p>
+        <p class="title">{{item.nb_name}}</p>
         <small>Create time: {{item.create_time}}</small>
       </div>
       <ion-buttons item-end>

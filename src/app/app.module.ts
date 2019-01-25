@@ -11,18 +11,21 @@ import {NotesPage} from '../pages/notes/notes';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HeroProvider } from '../providers/hero/hero';
+
 import { InitDbProvider } from '../providers/init-db/init-db';
 import { NotebooksProvider } from '../providers/notebooks/notebooks';
 import { NotesProvider } from '../providers/notes/notes';
 import { NoteeditorPage } from '../pages/noteeditor/noteeditor';
+
+import {Autosize} from '../component/autosize';
 
 @NgModule({
   declarations: [
     MyApp,
     NotebooksPage,
     NotesPage,
-    NoteeditorPage
+    NoteeditorPage,
+    Autosize
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,6 @@ import { NoteeditorPage } from '../pages/noteeditor/noteeditor';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HeroProvider,
     SQLite,
     InitDbProvider,
     NotebooksProvider,

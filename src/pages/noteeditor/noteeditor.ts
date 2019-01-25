@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Note} from '../../note';
 import {NotesProvider} from '../../providers/notes/notes';
@@ -17,6 +17,10 @@ import {AlertController} from 'ionic-angular';
   templateUrl: 'noteeditor.html',
 })
 export class NoteeditorPage {
+  @ViewChild('area') area : ElementRef;
+
+  resized = false;
+  
   notedata: Note = {
     id: -1,
     nb_id: -1,
@@ -33,7 +37,8 @@ export class NoteeditorPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public sqlite: NotesProvider,
-    public alertCtr : AlertController) {     
+    public alertCtr : AlertController,
+    public element : ElementRef) {     
       this.mode = this.navParams.get('mode');
 
       if(this.mode == 'create')
@@ -50,10 +55,18 @@ export class NoteeditorPage {
           .then((result: any) => {
             this.notedata = result.item;
 
-            //this.showAlert(JSON.stringify(result));
+            // Thay doi chieu cao cua TextArea khi load du lieu
+            setTimeout(() => {
+              const textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+              textArea.style.overflow = 'hidden';
+              textArea.style.height = 'auto';
+              textArea.style.height = textArea.scrollHeight + 'px';
+            } , 50)
           })
           .catch(e => {this.showAlert(JSON.stringify(e))})
       }
+
+      
   }
 
   onChange()
@@ -65,6 +78,7 @@ export class NoteeditorPage {
   {
     if(this.mode == 'create')
     {
+      this.notedata.title = this.notedata.title != '' ? this.notedata.title : 'Untitled';
       this.sqlite.addNote(this.notedata)
       .then((result) => {
         //this.showAlert(JSON.stringify(result));
@@ -95,7 +109,7 @@ export class NoteeditorPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NoteeditorPage');
+    //console.log('ionViewDidLoad NoteeditorPage');
   }
 
 }
